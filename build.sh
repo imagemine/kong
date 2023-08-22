@@ -40,13 +40,16 @@ if [[ ! -z ${version} ]];
 then
   source project.properties
   image_version_tag="${owner}/${project}:${kong_version}-${version}"
+  image_kong_version_tag="${owner}/${project}:${kong_version}"
   image_latest_tag="${owner}/${project}:latest"
   echo building ${image_version_tag}
   docker build --no-cache -t ${image_version_tag} --build-arg KONG_VERSION=${kong_version} .
   docker tag ${image_version_tag} ${image_latest_tag}
+  docker tag ${image_version_tag} ${image_kong_version_tag}
   if [[ "${push}" == "yes" ]]; then 
     docker push ${image_version_tag}
     docker push ${image_latest_tag}
+    docker push ${image_kong_version_tag}
   fi;
 
   now=$(date '+%Y-%m-%dT%H:%M:%S%z')
