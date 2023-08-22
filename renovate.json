@@ -8,5 +8,13 @@
   ],
   "docker": {
     "pinDigests": true
-  }
+  },
+  "regexManagers": [
+    {
+      "fileMatch": ["project.properties$"],
+      "matchStrings": [
+        "#\\s*renovate:\\s*(datasource=(?<datasource>.*?) )?depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s*.*?_version=(?<currentValue>.*)"
+      ]
+    }
+  ]
 }
