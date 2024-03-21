@@ -10,8 +10,8 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y ca-certificates-java \
     && apt-get install --no-install-recommends -y openjdk-17-jre-headless \
     && apt-get remove -y openjdk-11-jre-headless \
-    # Upgrade openssl to fix vulnerabilities
-    && apt-get --only-upgrade install --no-install-recommends -y openssl \
+    # Upgrade openssl and libuv1 to fix vulnerabilities
+    && apt-get --only-upgrade install --no-install-recommends -y openssl libuv1 \
     && rm -rf /var/lib/apt/lists/* \
     && ln -s java-17-openjdk-amd64 /usr/lib/jvm/default-jvm \
     && java -version 2>&1 | grep 'openjdk version "17\.' \
